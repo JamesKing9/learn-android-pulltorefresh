@@ -29,12 +29,15 @@ public class PullToRefreshActivity extends ListActivity {
             }
         });
 
+        // 创建一个 LinkedList 集合，用来放 item 数据
         mListItems = new LinkedList<String>();
         mListItems.addAll(Arrays.asList(mStrings));
 
+        // new 一个适配器
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, mListItems);
 
+        // 将适配器设置给 PullToRefreshListView
         setListAdapter(adapter);
     }
 
@@ -42,7 +45,7 @@ public class PullToRefreshActivity extends ListActivity {
 
         @Override
         protected String[] doInBackground(Void... params) {
-            // Simulates a background job.
+            // Simulates a background job.(模拟一个后台操作)
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
@@ -62,6 +65,7 @@ public class PullToRefreshActivity extends ListActivity {
         }
     }
 
+    // 一些瑞典语字符串
     private String[] mStrings = {
             "Abbaye de Belloc", "Abbaye du Mont des Cats", "Abertam",
             "Abondance", "Ackawi", "Acorn", "Adelost", "Affidelice au Chablis",

@@ -17,7 +17,7 @@ Repository at <https://github.com/johannilsson/android-pulltorefresh>.
 ``` xml
 <!--
   The PullToRefreshListView replaces a standard ListView widget.
-使用 PullToRefreshListView 控件 替换掉  a standard ListView widget 的位置
+(使用 PullToRefreshListView 控件 替换掉  a standard ListView widget 的位置)
 -->
 <com.markupartist.android.widget.PullToRefreshListView
     android:id="@+id/android:list"
@@ -29,43 +29,47 @@ Repository at <https://github.com/johannilsson/android-pulltorefresh>.
 ### Activity
 
 ``` java
-// Set a listener to be invoked when the list should be refreshed.
+// Set a listener（监听器） to be invoked(回调) when the list should be refreshed（需要被刷新的时候）.
 ((PullToRefreshListView) getListView()).setOnRefreshListener(new OnRefreshListener() {
     @Override
     public void onRefresh() {
-        // Do work to refresh the list here.
+        // Do work to refresh the list here.（在这里做 refresh 的业务逻辑）
         new GetDataTask().execute();
     }
 });
 
+// 一个 AsyncTask 的子类
 private class GetDataTask extends AsyncTask<Void, Void, String[]> {
     ...
     @Override
     protected void onPostExecute(String[] result) {
         mListItems.addFirst("Added after refresh...");
-        // Call onRefreshComplete when the list has been refreshed.
+      
+        // Call onRefreshComplete when the list has been refreshed.（当 list 被刷新后，调用 onRefreshComplete() 这个回调方法）
         ((PullToRefreshListView) getListView()).onRefreshComplete();
+      
+      // 完成后，将 result 传递给父类 AsyncTask 
         super.onPostExecute(result);
     }
 }
 ```
 
-### Last Updated
+### Last Updated（最近的更新）
 
 It's possible to add a last updated time using the method `setLastUpdated`
 and `onRefreshComplete`. The text provided to these methods will be set below
-the Release to refresh text. Note that the time representation is not validated
+the Release to refresh text. Note that（注意：） the time representation is not validated
 replaces the previous text, which means that it's possible and recommended to
 add a text similar to "Last Update: 15:23". This might be changed in future
 versions.
 
-## 1.5 Support
+## 1.5 Support（支持 1.5 及以上版本）
 
 To use the widget on 1.5 the necessary drawables needs to be copied to that
 projects drawable folder. The drawables needed by the widget can be found in
 the drawable-hdpi folder in the library project.
 
-## Contributors
+## Contributors（参与者）
 
 * [Jason Knight](http://www.synthable.com/) - <https://github.com/synthable>
 * [Eddie Ringle](http://eddieringle.com/) - <https://github.com/eddieringle>

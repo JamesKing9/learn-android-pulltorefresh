@@ -21,6 +21,7 @@ import android.widget.AbsListView.OnScrollListener;
 
 import com.markupartist.android.widget.pulltorefresh.R;
 
+// 继承 ListView， 实现 OnScrollListener 接口
 public class PullToRefreshListView extends ListView implements OnScrollListener {
 
     private static final int TAP_TO_REFRESH = 1;
@@ -72,7 +73,7 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
     }
 
     private void init(Context context) {
-        // Load all of the animations we need in code rather than through XML
+        // Load all of the animations we need in code rather than through XML（加载所有的动画效果在我们需要时，而不是通过 XML）
         mFlipAnimation = new RotateAnimation(0, -180,
                 RotateAnimation.RELATIVE_TO_SELF, 0.5f,
                 RotateAnimation.RELATIVE_TO_SELF, 0.5f);
@@ -179,7 +180,7 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
                         onRefresh();
                     } else if (mRefreshView.getBottom() < mRefreshViewHeight
                             || mRefreshView.getTop() <= 0) {
-                        // Abort refresh and scroll down below the refresh view
+                        // Abort（终止） refresh and scroll down below the refresh view
                         resetHeader();
                         setSelection(1);
                     }
